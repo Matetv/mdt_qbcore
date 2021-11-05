@@ -4,8 +4,8 @@ Screenshots folgen!
 
 MDT for qbcore!
 Entries extended "blood group" & "fingerprint" & "NATIONALITY"
-Screenshots!
-https://raw.githubusercontent.com/Matetv/mdt_qbcore/main/20211105181256_1.jpg
+Screenshots!![20211105181256_1](https://user-images.githubusercontent.com/35634379/140551826-4c1b283c-399b-408b-b74a-ca76804ad2f5.jpg)
+
 
 edit for https://paradise-islandv.de/
 Daryl Dixon#4074
