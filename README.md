@@ -9,6 +9,8 @@ Screenshots will follow!
 edit for https://paradise-islandv.de/
 Daryl Dixon#4074
 
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/T6T06B7RG)
+
 original from GhzGarage: https://github.com/GhzGarage/mdt
 
 
