@@ -1,8 +1,9 @@
 
-MDT qbcore! Entries extended "blood group" & "fingerprint"!
-Screenshots will follow! 
-If necessary someone can use it!
-Edit:  Entries extended "BLOOD GROUP" & "FINGERPRINT" & "NATIONALITY" 
+#MDT qbcore! Entries extended "blood group" & "fingerprint"!
+#Screenshots will follow! 
+#If necessary someone can use it!
+
+#Edit:  Entries extended "BLOOD GROUP" & "FINGERPRINT" & "NATIONALITY" 
 ![20211105182410_1](https://user-images.githubusercontent.com/35634379/140554454-eea23f2e-e7b2-4bcb-9443-a444eb55bb18.jpg)
 
 Update: Missing data uploaded!# Must change the "#" in your PLAYERS table in the database to "id" like this !!
