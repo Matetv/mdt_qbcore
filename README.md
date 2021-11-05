@@ -1,11 +1,14 @@
 MDT für qbcore!
 Einträge erweitert "Blutgruppe" & "Fingerabdruck"
+Screenshots folgen!
 
 MDT for qbcore!
 Entries extended "blood group" & "fingerprint"
+Screenshots will follow!
 
-edit for https://paradise-islandv.de/
+edit for https://paradise-islandv.de/ -> https://cfx.re/join/q4k6lv
 Daryl Dixon#4074
+
 
 
 
