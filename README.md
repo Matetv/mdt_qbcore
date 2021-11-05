@@ -6,7 +6,7 @@ MDT for qbcore!
 Entries extended "blood group" & "fingerprint"
 Screenshots will follow!
 
-edit for https://paradise-islandv.de/ -> https://cfx.re/join/q4k6lv
+edit for https://paradise-islandv.de/
 Daryl Dixon#4074
 
 original from GhzGarage: https://github.com/GhzGarage/mdt
