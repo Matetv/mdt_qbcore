@@ -1,0 +1,265 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap");
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+.content {
+  position: absolute;
+  border-radius: 5px;
+  width: 75%;
+  height: 80%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #324558;
+  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2) inset,
+    1px 1px 6px 1px rgba(0, 0, 0, 0.2);
+}
+/*HOME*/
+.content h2 {
+  font-family: "Poppins";
+  font-style: medium;
+  font-weight: 700;
+  user-select: none;
+  color: #dcdcdc;
+  margin: 1px 1px 1px 1px;
+}
+/*Home page Text*/
+.content h3 {
+  font-family: "Poppins";
+  user-select: none;
+  font-weight: bolder;
+  color: #ffbb24;
+  margin: 1px 1px 1px 1px;
+}
+/*SubText for calls and warrants*/
+.content h4 {
+  font-family: "Poppins";
+  font-weight: bolder;
+  font-size: 14px;
+  user-select: none;
+  color: white;
+  margin: 1px 1px 10px 1px;
+}
+
+/*Sidebar text*/
+.content li {
+  font-family: "Poppins";
+  font-weight: 780;
+  color: #dcdcdc;
+  float: bottom;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  font-size: 14px;
+}
+.content li:last-child {
+  border-right: none;
+}
+.content button {
+  background-color: #2d3139;
+  color: #dcdcdc;
+  font-family: "Poppins";
+  font-weight: bolder;
+  border: 5px solid #2d3139;
+  font-size: 12pt;
+  text-align: center;
+  padding: 4px 2px;
+}
+.content input {
+  background-color: #202020;
+  font-family: "Courier New";
+  border: 2px solid #383838;
+  color: #dcdcdc;
+  font-size: 12pt;
+  padding: 7px 15px 5px 15px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+.content textarea {
+  background-color: #202020;
+  white-space: pre-line;
+  white-space: pre-wrap;
+  font-family: "Courier New";
+  font-weight: bolder;
+  font-size: 14px;
+  border: 2px solid #383838;
+  color: #dcdcdc;
+  font-size: 12pt;
+  padding: 0px 0px 0px 0px;
+  width: 550px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-overflow: ellipsis;
+  text-align: left;
+  outline: none;
+}
+.content th {
+  font-family: "Courier New";
+  font-weight: bolder;
+  font-size: 14px;
+  color: #dcdcdc;
+  padding: 5px 10px;
+  text-align: center;
+  border-bottom: 3px solid #383838;
+}
+.content td {
+  font-family: "Courier New";
+  font-size: 14px;
+  color: #dcdcdc;
+  padding: 10px;
+  text-align: center;
+  border-top: 1px solid #383838;
+}
+.content table {
+  border-collapse: collapse;
+  column-gap: 3px solid #383838;
+}
+.content table td + td {
+  border-left: 2px solid #383838;
+}
+.content table th + th {
+  border-left: 2px solid #383838;
+}
+.content tr:not(:first-child):hover {
+  background-color: #295f56;
+}
+.content button:hover {
+  background-color: #ffbb24;
+  border-color: #ffbb24;
+}
+.content ::-webkit-scrollbar-thumb {
+  background: #585858;
+  border-radius: 5px;
+}
+.badge {
+  position: fixed;
+  display: inline-block;
+  left: 3.245%;
+  top: 1.5%;
+  max-width: 150px;
+  height: auto;
+}
+.mugshot {
+  display: inline-block;
+  max-width: 215px;
+  height: auto;
+  border: 2px solid #585858;
+  user-select: none;
+}
+.notification {
+  display: none;
+  z-index: 1;
+  position: fixed;
+  top: 1%;
+  right: 0%;
+  max-width: 25%;
+  padding: 15px;
+  background-color: #202020;
+  border-bottom: 2px solid #ffbb24;
+}
+.report-input {
+  font-family: "Courier New";
+  border-width: 0px;
+  border: none;
+  color: #dcdcdc;
+  font-size: 12pt;
+  padding: 0px 0px 0px 0px;
+  width: 550px;
+  margin-right: 10px;
+  text-overflow: ellipsis;
+  text-align: left;
+  font-weight: bolder;
+}
+
+.wrapper {
+  display: flex;
+  position: relative;
+}
+
+.content .sidebar {
+  background: #324558;
+  width: 12%;
+  height: 100%;
+}
+
+.content .sidebar h2 {
+  margin-bottom: 20px;
+}
+
+.content .sidebar ul li {
+  padding: 15px;
+  text-align: left;
+  line-height: 65px;
+  height: 7%;
+  border-right: 1px solid #ffbb24;
+  transition: ease-out 0.3s;
+}
+
+.content .sidebar ul li a .fas {
+  width: 25px;
+}
+
+.content .sidebar ul li:hover {
+  opacity: 0.5;
+}
+
+.modal-content {
+  position: relative;
+  background-color: #202020;
+  margin: auto;
+  padding: 0;
+  margin: 0 auto;
+  border: 2px solid #383838;
+  border-radius: 2px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+.close {
+  color: #383838;
+  float: right;
+  font-size: 1.4em;
+}
+.close:hover,
+.close:focus {
+  color: #dc143c;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #dc143c;
+  text-decoration: none;
+  cursor: pointer;
+}
+.clickable {
+  text-decoration: underline;
+  text-decoration-color: #383838;
+}
+.clickable:hover,
+.clickable2:hover {
+  color: #dc143c;
+}
+.important h4 {
+  text-decoration: underline;
+  text-decoration-color: #383838;
+}
+.img-block {
+  padding: 5px;
+  color: #011b37;
+  background-color: #383838;
+  border: 2px solid #383838;
+  position: absolute;
+  font-family: Courier;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.textarea {
+  font-size: 14px;
+  border: 2px solid #202020;
+  padding: 7px 15px 5px 15px;
+}
