@@ -9,7 +9,7 @@ Screenshots will follow!
 edit for https://paradise-islandv.de/ -> https://cfx.re/join/q4k6lv
 Daryl Dixon#4074
 
-
+original from GhzGarage: https://github.com/GhzGarage/mdt
 
 
 # Must change the "#" in your PLAYERS table in the database to "id" like this !!
