@@ -140,6 +140,31 @@ RegisterNUICallback("getReport", function(data, cb)
     cb('ok')
 end)
 
+RegisterNUICallback("sentencePlayer", function(data, cb)
+    local players = {}
+    for i = 0, 256 do
+        if GetPlayerServerId(i) ~= 0 then
+            table.insert(players, GetPlayerServerId(i))
+        end
+    end
+    TriggerServerEvent("mdt:sentencePlayer", data.jailtime, data.charges, data.char_id, data.fine, players)
+    cb('ok')
+end)
+
+RegisterNetEvent('mdt:client:JailCommand')
+AddEventHandler('mdt:client:JailCommand', function(playerId, time)
+    TriggerServerEvent("police:server:JailPlayer", playerId, tonumber(time))
+end)
+
+RegisterNetEvent("mdt:returnOffenderSearchResults")
+AddEventHandler("mdt:returnOffenderSearchResults", function(results)
+    SendNUIMessage({
+        type = "returnedPersonMatches",
+        matches = results
+    })
+end)
+
+
 RegisterNUICallback("getCalls", function(data, cb)
     TriggerServerEvent("mdt:getCalls")
 end)
