@@ -243,20 +243,48 @@ end)
 RegisterServerEvent("mdt:submitNewReport")
 AddEventHandler("mdt:submitNewReport", function(data)
 	local usource = source
+	
 	local author = GetCharacterName(source)
+	if tonumber(data.sentence) and tonumber(data.sentence) > 0 then
+		data.sentence = tonumber(data.sentence)
+	else 
+		data.sentence = nil 
+	end
 	charges = json.encode(data.charges)
 	data.date = os.date('%m-%d-%Y %H:%M:%S', os.time())
-	exports.oxmysql:insert('INSERT INTO `mdt_reports` (`char_id`, `title`, `incident`, `charges`, `author`, `name`, `date`) VALUES (?, ?, ?, ?, ?, ?, ?)', {data.char_id, data.title, data.incident, charges, author, data.name, data.date,}, function(id)
-		TriggerEvent("mdt:getReportDetailsById", id, usource)
+	exports['ghmattimysql']:execute('INSERT INTO `mdt_reports` (`char_id`, `title`, `incident`, `charges`, `author`, `name`, `date`, `jailtime`) VALUES (@id, @title, @incident, @charges, @author, @name, @date, @sentence)', {
+		['@id']  = data.char_id,
+		['@title'] = data.title,
+		['@incident'] = data.incident,
+		['@charges'] = charges,
+		['@author'] = author,
+		['@name'] = data.name,
+		['@date'] = data.date,
+		['@sentence'] = data.sentence
+	}, 
+	function(id)
+		whichId = id['insertId']
+		TriggerEvent("mdt:getReportDetailsById", whichId, usource)
 		TriggerClientEvent("mdt:sendNotification", usource, "A new report has been submitted.")
 	end)
 
 	for offense, count in pairs(data.charges) do
-		exports.oxmysql:fetch('SELECT * FROM `user_convictions` WHERE `offense` = ? AND `char_id` = ?', {offense, data.char_id}, function(result)
+		exports['ghmattimysql']:execute('SELECT * FROM `user_convictions` WHERE `offense` = @offense AND `char_id` = @id', {
+			['@offense'] = offense,
+			['@id'] = data.char_id
+		}, function(result)
 			if result[1] then
-				exports.oxmysql:execute('UPDATE `user_convictions` SET `count` = ? WHERE `offense` = ? AND `char_id` = ?', {data.char_id, offense, count + 1})
+				exports['ghmattimysql']:execute('UPDATE `user_convictions` SET `count` = @count WHERE `offense` = @offense AND `char_id` = @id', {
+					['@id']  = data.char_id,
+					['@offense'] = offense,
+					['@count'] = count + 1
+				})
 			else
-				exports.oxmysql:insert('INSERT INTO `user_convictions` (`char_id`, `offense`, `count`) VALUES (?, ?, ?)', {data.char_id, offense, count})
+				exports['ghmattimysql']:execute('INSERT INTO `user_convictions` (`char_id`, `offense`, `count`) VALUES (@id, @offense, @count)', {
+					['@id']  = data.char_id,
+					['@offense'] = offense,
+					['@count'] = count
+				})
 			end
 		end)
 	end
@@ -277,6 +305,40 @@ AddEventHandler("mdt:performReportSearch", function(query)
 
 		TriggerClientEvent("mdt:returnReportSearchResults", usource, matches)
 	end)
+end)
+
+RegisterServerEvent("mdt:sentencePlayer")
+AddEventHandler("mdt:sentencePlayer", function( jailtime, charges, char_id, fine, players)
+	
+	local src = source
+	local offender = char_id
+
+	if offender ~= nil then
+		TriggerClientEvent("mdt:client:JailPlayer", src, jailtime, offender, fine)
+	end
+
+
+	for _, src in pairs(players) do
+		if src ~= 0 and GetPlayerName(src) then
+			exports['ghmattimysql']:execute('SELECT * FROM `players` WHERE `citizenid` = @identifier', {
+				['@identifier'] = char_id
+			}, function(result)
+	
+				if result[1].id == char_id then
+					if jailtime and jailtime > 0 then
+						jailtime = math.ceil(jailtime)
+					end
+					if fine > 0 then
+						-- TriggerClientEvent here if you want to send the money directly to the qb-bossmenu for police. -- OPTIONAL.
+					end
+					return
+				end
+
+				TriggerClientEvent("mdt:client:JailCommand", src, 'NHB84639', 5)
+			end)
+		end
+	end
+
 end)
 
 RegisterServerEvent("mdt:performVehicleSearch")
