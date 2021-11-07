@@ -53,6 +53,8 @@ const mdtApp = new Vue({
             char_id: null,
             focus: "name",
             recommended_fine: 0,
+            recommended_sentence: 0,
+            sentence: ''
         },
 
         calls: {},
@@ -252,6 +254,9 @@ const mdtApp = new Vue({
                     }
 
                     this.report_new.recommended_fine = this.report_new.recommended_fine + this.offenses[key].amount
+                    if (this.offenses[key].jailtime) {
+                        this.report_new.recommended_sentence = this.report_new.recommended_sentence + this.offenses[key].jailtime
+                    }
 
                     return;
                 }
@@ -270,6 +275,9 @@ const mdtApp = new Vue({
                     for (var key in this.offenses) {
                         if (offense == this.offenses[key].label) {
                             this.report_new.recommended_fine = this.report_new.recommended_fine - this.offenses[key].amount
+                            if (this.offenses[key].jailtime) {
+                                this.report_new.recommended_sentence = this.report_new.recommended_sentence - this.offenses[key].jailtime
+                            }
                         }
                     }
 
@@ -285,6 +293,7 @@ const mdtApp = new Vue({
                     name: this.report_new.name,
                     charges: this.report_new.charges,
                     incident: this.report_new.incident,
+                    sentence: this.report_new.sentence
                 }));
 
                 this.report_new.title = "";
@@ -295,11 +304,13 @@ const mdtApp = new Vue({
                 this.report_new.char_id = null;
                 this.report_new.focus = "name";
                 this.report_new.recommended_fine = 0;
+                this.report_new.recommended_sentence = 0;
+                this.report_new.sentence = "";
                 this.offender_search = "";
                 this.offender_results.query = "";
                 this.offender_results.results = false;
                 this.changePage("Search Reports");
-                return;   
+                return;     
             }
         },
         OpenOffenderDetailsById(id) {
@@ -464,6 +475,22 @@ const mdtApp = new Vue({
                     }
                 }
             }
+        },
+        SentencePlayer() {
+            var fine = 0
+            for (var key in this.report_selected.charges) {
+                for (var offense in this.offenses) {
+                    if (this.offenses[offense].label == key) {
+                        fine = fine + (this.offenses[offense].amount * this.report_selected.charges[key])
+                    }
+                }
+            }
+            $.post('http://mdt/sentencePlayer', JSON.stringify({
+                char_id: this.report_selected.char_id,
+                jailtime: this.report_selected.jailtime,
+                charges: this.report_selected.charges,
+                fine: fine
+            }));
         },
         AttachToCall(index) {
             $.post('http://mdt/attachToCall', JSON.stringify({
