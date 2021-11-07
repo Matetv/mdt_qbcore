@@ -111,6 +111,7 @@
                                 {{ offense }} (x{{ amount }})
                             </h4>
                         </span>
+                        <h4 v-if="report_selected.jailtime">Sentence: {{ report_selected.jailtime }} months</h4>
                         <h3>INCIDENT OFFICER</h3>
                         <h4 v-if="report_selected.author"> {{ report_selected.author }} </h4>
                         <h4 v-else-if="report_selected.author == null"> ... </h4>
@@ -157,8 +158,11 @@
                                 </h4>
                             </span>
                             <h4 v-if="report_new.recommended_fine > 0">Fine: ${{report_new.recommended_fine}}</h4>
+                            <h4 v-if="report_new.recommended_sentence > 0">Recommended Sentence: {{report_new.recommended_sentence}} months</h4>
+                            <h3 v-if="report_new.recommended_sentence > 0">SENTENCE</h3>
+                            <input v-if="report_new.recommended_sentence > 0" v-model="report_new.sentence" style="font-size: 14px; margin-bottom: 5px;" type="text" class="noselect" placeholder="Enter months" class="report-input" required>
                             <br />
-                            <button v-if="report_new.char_id && report_new.incident && report_new.title" v-on:click="SubmitNewReport()" type="button" style="margin-top: 20px">SUBMIT REPORT</button>
+                            <button v-if="report_new.char_id && report_new.incident && report_new.title && ((report_new.recommended_sentence > 0 && report_new.sentence) || report_new.recommended_sentence == 0)" v-on:click="SubmitNewReport()" type="button" style="margin-top: 20px">SUBMIT REPORT</button>
                             <button v-if="report_new.focus == 'charges'" v-on:click="report_new.focus = 'name'" type="button" style="margin-top: 20px">SEARCH OFFENDER</button>
                             <button v-if="report_new.focus == 'name'" v-on:click="report_new.focus = 'charges'" type="button" style="margin-top: 20px">SEARCH CHARGES</button>
                         </el-form>
@@ -218,16 +222,16 @@
                         <h4 v-if="offender_selected.haswarrant" v-bind:class="getClass('important')"> {{ offender_selected.firstname}} {{offender_selected.lastname}} has an active warrant. </h4>
                         <h4 v-if="offender_selected.bail" v-bind:class="getClass('important')"> {{ offender_selected.firstname}} {{offender_selected.lastname}} is on bail. </h4>
                         <h4 v-if="offender_selected.firstname == null"> ... </h4>
-                        <h3>TELEFON</h3>
+                        <h3>TELEPHONE</h3>
                         <h4 v-if="offender_selected.phone_number"> {{offender_selected.phone_number}} </h4>
                         <h4 v-else-if="offender_selected.phone_number == null"> ... </h4>
 						
 						
-						 <h3>NATIONALITÄT</h3>
+						 <h3>NATIONALITY</h3>
                         <h4 v-if="offender_selected.nationality"> {{offender_selected.nationality}} </h4>
                         <h4 v-else-if="offender_selected.nationality == null"> ... </h4>
 						
-						<h3>BLUTGRUPPE</h3>
+						<h3>BLOOD TYPE</h3>
                         <h4 v-if="offender_selected.bloodtype"> {{offender_selected.bloodtype}} </h4>
                         <h4 v-else-if="offender_selected.bloodtype == null"> ... </h4>
 					
@@ -240,10 +244,10 @@
                         <span v-else-if="offender_selected.licenses" v-for="license in offender_selected.licenses">
                             <h4>{{ license.label }}</h4>
                         </span>
-                        <h3>GEBURTSDATUM</h3>
+                        <h3>DOB</h3>
                         <h4 v-if="offender_selected.dateofbirth"> {{ offender_selected.dateofbirth }} </h4>
                         <h4 v-else-if="offender_selected.dateofbirth == null"> ... </h4>
-                        <h3 v-if="offender_selected.firstname == null || (offender_selected.convictions != null && Object.keys(offender_selected.convictions).length > 0)">VORSTRAFEN</h3>
+                        <h3 v-if="offender_selected.firstname == null || (offender_selected.convictions != null && Object.keys(offender_selected.convictions).length > 0)">CONVICTIONS</h3>
                         <h4 v-if="offender_selected.firstname == null"> ... </h4>
                         <span v-else-if="offender_selected.convictions" v-for="(value, name) in offender_selected.convictions">
                             <h4>{{ name }} x{{ value }}</h4>
@@ -354,6 +358,7 @@
                             <h3>DETAILS</h3>
                             <h4 v-if="report_selected.incident" style="white-space: pre-line; white-space: pre-wrap;">{{ report_selected.incident }}</h4>
                             <h4 v-else-if="report_selected.incident == null"> ... </h4>
+                            <h4 v-if="report_selected.jailtime">Sentence: {{ report_selected.jailtime }} months</h4>
                         </template>
                         <template v-else-if="report_edit.enable == true">
                             <h3>DETAILS (EDIT)</h3>
@@ -373,6 +378,7 @@
                         <h4 v-else-if="report_selected.author == null"> ... </h4>
                         <br />
                         <button type="button" v-on:click="changePage('Search Reports')" id="search-reports" >BACK TO REPORTS</button>
+                        <button v-if="report_edit.enable == false" type="button" v-on:click="SentencePlayer()" class="noselect">SENTENCE</button>
                         <button v-if="report_edit.enable == false" type="button" v-on:click="ToggleReportEdit()" >EDIT</button>
                         <button v-if="report_edit.enable == false" type="button" v-on:click="DeleteSelectedReport()" >DELETE</button>
                         <template v-else-if="report_edit.enable">
