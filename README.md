@@ -1,7 +1,11 @@
 Version 2 by MonkeyWhisper
 
 Added Sentencing via MDT.
+
 ![image](https://user-images.githubusercontent.com/82112471/140657189-8d96a208-41e3-4300-a71e-5acc9431bd8c.png)
+
+View Report Sentence. 
+
 ![image](https://user-images.githubusercontent.com/82112471/140657194-077bf072-33df-42ec-b93c-1eeb168a8045.png)
 
 #MDT qbcore! Entries extended "blood group" & "fingerprint"!
