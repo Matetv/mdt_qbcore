@@ -11,4 +11,5 @@ Update: Missing data uploaded!# Must change the "#" in your PLAYERS table in the
 
 ![image](https://user-images.githubusercontent.com/57848836/133552468-22a54f28-98ca-4eaf-b3a8-79f13d8b3d35.png)
 
-Original: https://github.com/GhzGarage/mdt
+QBCORE: https://github.com/GhzGarage/mdt
+Original: https://forum.cfx.re/t/esx-mobile-data-terminal-reports-warrants-calls-searches-more/1701472
