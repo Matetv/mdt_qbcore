@@ -65,6 +65,60 @@ RegisterNUICallback("close", function(data, cb)
     cb('ok')
 end)
 
+RegisterNetEvent('mdt:client:JailPlayer')
+AddEventHandler('mdt:client:JailPlayer', function(jailAmount, offender, fineAmount)
+    local player, distance = GetClosestPlayer()
+    if player ~= -1 and distance < 2.5 then
+        local playerId = GetPlayerServerId(player)
+
+        -- trigger event to get citizenid for closet person 
+        TriggerServerEvent('mdt:server:getPlayer', playerId)
+        Citizen.Wait(100)
+       
+        otherPlayer = citizenID.PlayerData.citizenid
+        print(otherPlayer)
+        local time = jailAmount
+
+        if otherPlayer == offender then
+            if tonumber(time) > 0 then
+                TriggerServerEvent("police:server:JailPlayer", playerId, tonumber(time))
+                Citizen.Wait(100)
+                if fineAmount > 0 then
+                    TriggerServerEvent("police:server:BillPlayer", playerId, tonumber(fineAmount))		
+                    Citizen.Wait(100)		
+                end
+            else
+                QBCore.Functions.Notify("Time must be higher than 0..", "error")
+            end
+        else
+             QBCore.Functions.Notify("You're trying to send the wrong person to jail!..", "error")
+        end
+    else
+        QBCore.Functions.Notify("No one nearby!", "error")
+    end
+end)
+
+function GetClosestPlayer()
+    local closestPlayers = QBCore.Functions.GetPlayersFromCoords()
+    local closestDistance = -1
+    local closestPlayer = -1
+    local coords = GetEntityCoords(PlayerPedId(-1))
+
+    for i=1, #closestPlayers, 1 do
+        if closestPlayers[i] ~= PlayerId() then
+            local pos = GetEntityCoords(PlayerPedId(closestPlayers[i]))
+            local distance = GetDistanceBetweenCoords(pos.x, pos.y, pos.z, coords.x, coords.y, coords.z, true)
+
+            if closestDistance == -1 or closestDistance > distance then
+                closestPlayer = closestPlayers[i]
+                closestDistance = distance
+            end
+        end
+	end
+
+	return closestPlayer, closestDistance
+end
+
 RegisterNUICallback("performOffenderSearch", function(data, cb)
     TriggerServerEvent("mdt:performOffenderSearch", data.query)
     TriggerServerEvent("mdt:getOffensesAndOfficer")
