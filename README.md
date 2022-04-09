@@ -1,4 +1,4 @@
-
+#No more support!!!
 #MDT qbcore! Entries extended "blood group" & "fingerprint"!
 !#If necessary someone can use it!
 
