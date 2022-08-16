@@ -1,4 +1,5 @@
 #No more support!!!
+#No more support!!! Outdated version!
 #MDT qbcore! Entries extended "blood group" & "fingerprint"!
 !#If necessary someone can use it!
 
