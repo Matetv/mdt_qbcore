@@ -1,6 +1,10 @@
 #No more support!!! Outdated version!
 #MDT qbcore! Entries extended "blood group" & "fingerprint"!
 !#If necessary someone can use it!
+#############################################
+#[QBCORE] Fingerabdrücke und Blutgruppe im MDT
+https://forum.friendz-club.de/forum/index.php?thread/722-qbcore-fingerabdr%C3%BCcke-und-blutgruppe-im-mdt/&postID=1884#post1884
+#############################################
 
 #Edit:  Entries extended "BLOOD GROUP" & "FINGERPRINT" & "NATIONALITY" 
 ![20211105182410_1](https://user-images.githubusercontent.com/35634379/140554454-eea23f2e-e7b2-4bcb-9443-a444eb55bb18.jpg)
