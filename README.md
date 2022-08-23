@@ -2,7 +2,7 @@
 #MDT qbcore! Entries extended "blood group" & "fingerprint"!
 !#If necessary someone can use it!
 #############################################
-#[QBCORE] Fingerabdrücke und Blutgruppe im MDT
+#[QBCORE] Fingerabdrücke und Blutgruppe im MDT!
 https://forum.friendz-club.de/forum/index.php?thread/722-qbcore-fingerabdr%C3%BCcke-und-blutgruppe-im-mdt/&postID=1884#post1884
 #############################################
 
